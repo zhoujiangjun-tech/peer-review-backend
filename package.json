@@ -1,0 +1,16 @@
+{
+  "name": "peer-review-system",
+  "version": "1.0.0",
+  "description": "大学生作业互评匿名分发系统",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mammoth": "^1.12.0",
+    "multer": "^2.2.0"
+  }
+}
