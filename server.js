@@ -12,6 +12,16 @@ const db = require('./db'); // 启动时自动建表
 
 const app = express();
 
+// CORS：允许跨域访问（前端部署在任意域名，鉴权用 Bearer token 不依赖 cookie，因此可用 *）
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS,PATCH');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  res.setHeader('Access-Control-Max-Age', '86400');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
 // JSON body 解析（保留，但提交接口用 multipart 覆盖）
 app.use(express.json({ limit: '1mb' }));
 
