@@ -56,10 +56,12 @@ app.use((err, _req, res, _next) => {
   });
 });
 
-app.listen(config.PORT, () => {
+// 优先使用Railway分配的环境端口，兜底用配置文件端口
+const PORT = process.env.PORT || config.PORT;
+app.listen(PORT, () => {
   console.log('━'.repeat(60));
   console.log(` 作业互评匿名分发系统后端服务已启动`);
-  console.log(` 监听端口: ${config.PORT}`);
-  console.log(` 健康检查: http://localhost:${config.PORT}/health`);
+  console.log(` 监听端口: ${PORT}`);
+  console.log(` 健康检查: /health`);
   console.log('━'.repeat(60));
 });
